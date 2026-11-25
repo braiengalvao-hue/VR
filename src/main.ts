@@ -7,7 +7,7 @@ import { sphereContact } from './game/collisions';
 import { advanceActiveTime, createGameState, resolveChallenge, type GameState } from './game/state';
 import { readRecord, saveRecord } from './storage';
 import { GameAudio } from './view/audio';
-import './view/style.css';
+import './view/style.css'; 
 
 type Phase = 'intro' | 'playing' | 'paused' | 'over';
 type Kind = 'red' | 'blue' | 'gold';
