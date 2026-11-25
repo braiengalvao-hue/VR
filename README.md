@@ -22,7 +22,18 @@ Controles do computador:
 
 ## Jogar em VR no Quest
 
-O endereço emitido pelo Vite na rede local, como `http://192.168.x.x:5173`, serve apenas para desenvolvimento no computador: ele **não** pode iniciar WebXR no Quest porque é HTTP. Para usar os dois controles em VR, publique o resultado de `npm run build` em uma URL **HTTPS** (por exemplo, GitHub Pages) e abra essa URL no Meta Quest Browser. Em modo de computador, o Quest oferece apenas um ponteiro; ele não disponibiliza as poses independentes dos dois controles.
+O endereço emitido pelo Vite na rede local, como `http://192.168.x.x:5173`, serve apenas para desenvolvimento no computador: ele **não** pode iniciar WebXR no Quest porque é HTTP. Para usar os dois controles em VR, publique o resultado de `npm run build` em uma URL **HTTPS** e abra essa URL no Meta Quest Browser. Em modo de computador, o Quest oferece apenas um ponteiro; ele não disponibiliza as poses independentes dos dois controles.
+
+## Publicar no Netlify
+
+O repositório já contém `netlify.toml`, que instrui o Netlify a executar `npm run build` e publicar `dist/`.
+
+1. Entre em [netlify.com](https://www.netlify.com/) com sua conta GitHub.
+2. Selecione **Add new project** → **Import an existing project** → **GitHub**.
+3. Escolha `braiengalvao-hue/VR` e confirme a publicação. Não altere o comando de build nem o diretório de publicação detectados.
+4. Após o deploy terminar, abra a URL `https://<nome-do-site>.netlify.app/` no Meta Quest Browser e use **Entrar em VR**.
+
+O Netlify fornece HTTPS automaticamente e refaz o deploy a cada envio para a branch principal.
 
 ## Regras atuais
 
@@ -43,5 +54,5 @@ npm run preview
 
 - Implementados os quatro modos e curvas indicativas P01, metas sem limite por pontos, preservação de excedente, sequência inicial, pausa, feedback de evento, indicação de última vida e persistência local das oito categorias.
 - Verificados em 09/11/2026: `npm run typecheck`, `npm test` (34 casos) e `npm run build`. O navegador do computador carregou a partida, aceitou a seleção de modo e mostrou o HUD numa execução anterior desta versão integrada. A reconexão após as últimas alterações XR expirou, então a inspeção final pelo navegador ficou pendente. Os eventos que disparam os sons e os estados do jogo são testados deterministicamente. A audição real e o visor XR ainda não foram testados.
-- **Publicação:** código-fonte e documentação versionados no GitHub. O build local fica em `dist/`; a publicação de uma versão jogável por HTTPS ainda depende de escolher um host (P08).
+- **Publicação:** o projeto está preparado para deploy contínuo no Netlify; basta importar o repositório no painel do serviço. O build local fica em `dist/`.
 - **Pendente no Quest:** entrada XR, poses, conforto e áudio/visão binocular no aparelho real (P09). As recomendações de dificuldade e borda são valores iniciais de calibração, não medidas aprovadas no hardware.
